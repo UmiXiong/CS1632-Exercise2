@@ -283,7 +283,10 @@ public class RentACatUnitTest {
 		assertTrue(result);
 		assertFalse(c2.getRented());
 
-		System.out.println("Old Deuteronomy has been rented." + newline);
+//		chececk the cat2 is rented
+		verify(c2).rentCat();
+
+		assertEquals("Old Deuteronomy has been rented." + newline, out.toString());
 	}
 
 	/**
