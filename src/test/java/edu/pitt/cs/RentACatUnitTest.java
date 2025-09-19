@@ -58,6 +58,7 @@ public class RentACatUnitTest {
 
 //		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c1.getId()).thenReturn(1);
+		when(c1.getName()).thenReturn("Jennyanydots");
 		when(c1.toString()).thenReturn("ID 1. Jennyanydots\n");
 		when(c1.getRented()).thenReturn(false);
 
@@ -66,6 +67,7 @@ public class RentACatUnitTest {
 		c2=Cat.createInstance(InstanceType.MOCK,2,"Old Deuteronomy");
 		//		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c2.getId()).thenReturn(2);
+		when(c2.getName()).thenReturn("Old Deuteronomy");
 		when(c2.toString()).thenReturn("ID 2. Old Deuteronomy\n");
 		when(c2.getRented()).thenReturn(false);
 
@@ -76,6 +78,7 @@ public class RentACatUnitTest {
 		c3=Cat.createInstance(InstanceType.MOCK,3,"Mistoffelees");
 		//		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c3.getId()).thenReturn(3);
+		when(c3.getName()).thenReturn("Mistoffelees");
 		when(c3.toString()).thenReturn("ID 3. Mistoffelees\n");
 		when(c3.getRented()).thenReturn(false);
 
@@ -133,9 +136,9 @@ public class RentACatUnitTest {
 		Object result=m.invoke(r,2);
 //		test whether the value is null
 		assertNull(result);
-		String expected="Invalid cat ID."+newline;
-		String systemout=out.toString();
-		assertEquals(expected,systemout);
+		String expectedOutput = "Invalid cat ID." + newline; // 预期输出
+		String actualOutput = out.toString(); // 获取捕获的系统输出
+		assertEquals(expectedOutput, actualOutput);
 
 
 	}
