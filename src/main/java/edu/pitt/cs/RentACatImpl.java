@@ -49,6 +49,7 @@ public class RentACatImpl implements RentACat {
 	public boolean rentCat(int id) {
 		// TODO: Fill in
 		for(Cat cat:cats){
+//			cat exist and rented
 			if(cat.getId()==id){
 				if(cat.getRented()){
 					System.out.println("Sorry, "+ cat.getName()+ " is not here!");
