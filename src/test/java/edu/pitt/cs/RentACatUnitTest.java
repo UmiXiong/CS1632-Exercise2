@@ -45,7 +45,7 @@ public class RentACatUnitTest {
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
 
-//		TESTING CLAss should be implementation type, since it needs to cooperate with other class
+//		current test class should be real
 		r=RentACat.createInstance(InstanceType.IMPL);
 
 //		dependecy should be mock
@@ -59,6 +59,7 @@ public class RentACatUnitTest {
 //		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c1.getId()).thenReturn(1);
 		when(c1.toString()).thenReturn("ID 1. Jennyanydots\n");
+		when(c1.getRented()).thenReturn(false);
 
 		// 3. Create a Cat with ID 2 and name "Old Deuteronomy", assign to c2 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
@@ -66,6 +67,8 @@ public class RentACatUnitTest {
 		//		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c2.getId()).thenReturn(2);
 		when(c2.toString()).thenReturn("ID 2. Old Deuteronomy\n");
+		when(c2.getRented()).thenReturn(false);
+
 
 
 		// 4. Create a Cat with ID 3 and name "Mistoffelees", assign to c3 using a call to Cat.createInstance(InstanceType, int, String).
@@ -74,6 +77,8 @@ public class RentACatUnitTest {
 		//		since mock doesn't store the original value, so the return stuff should be defined here
 		when(c3.getId()).thenReturn(3);
 		when(c3.toString()).thenReturn("ID 3. Mistoffelees\n");
+		when(c3.getRented()).thenReturn(false);
+
 
 
 		// 5. Redirect system output from stdout to the "out" stream
@@ -92,6 +97,8 @@ public class RentACatUnitTest {
 	public void tearDown() throws Exception {
 		// Restore System.out to the original stdout
 		System.setOut(stdout);
+//		clear output
+		out.reset();
 
 		// Not necessary strictly speaking since the references will be overwritten in
 		// the next setUp call anyway and Java has automatic garbage collection.
