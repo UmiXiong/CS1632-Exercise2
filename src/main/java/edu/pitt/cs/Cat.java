@@ -15,7 +15,7 @@ public interface Cat {
 			case MOCK:
 			    // TODO: Return a mock object that emulates the behavior of the real object, if you feel you need one.
 //				mock a cat class
-				return Mockito.mock(Cat.class);
+				return new FakeCat(id,name);
 			default:
 				assert(false);
 				return null;
@@ -38,4 +38,5 @@ public interface Cat {
 	public boolean getRented();
 
 	public String toString();
+
 }

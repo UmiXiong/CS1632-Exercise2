@@ -47,6 +47,4 @@ public class CatImpl implements Cat {
 		// TODO: Fill in
 		return "ID "+this.id+ ". "+this.name+"\n";
 	}
-
-
 }
