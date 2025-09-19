@@ -51,7 +51,7 @@ public class RentACatImpl implements RentACat {
 			if(cat.getId()==id){
 				if(cat.getRented()){
 					System.out.println("Sorry, "+ cat.getName()+ " is not here!");
-					cat.rentCat();
+//					cat.rentCat();
 					return true;
 				}
 				else{
@@ -81,7 +81,7 @@ public class RentACatImpl implements RentACat {
 				return true;
 			}
 		}
-		System.out.println("Invalid cat ID");
+		System.out.println("Invalid cat ID.");
 		return false;
 	}
 

@@ -298,7 +298,7 @@ public class RentACatIntegrationTest {
 //		test whether the value is null
 		assertTrue(result);
 		assertTrue(c2.getRented());
-		assertEquals("Sorry, Old Deuteronomy is not here!" + newline,out.toString());
+		assertEquals("Sorry, Old Deuteronomy is not here!" + newline, out.toString());
 	}
 
 	/**
