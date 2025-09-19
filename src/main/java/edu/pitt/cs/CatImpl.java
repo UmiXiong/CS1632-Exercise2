@@ -45,7 +45,7 @@ public class CatImpl implements Cat {
 
 	public String toString() {
 		// TODO: Fill in
-		return "ID "+this.id+ ". "+this.name+"\n";
+		return "ID "+this.id+ ". "+this.name;
 	}
 
 
