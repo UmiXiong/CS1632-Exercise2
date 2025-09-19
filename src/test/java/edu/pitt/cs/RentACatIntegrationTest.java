@@ -143,9 +143,9 @@ public class RentACatIntegrationTest {
 		Method m=r.getClass().getDeclaredMethod("getCat",int.class);
 //		also private method being tested
 		m.setAccessible(true);
-		CatImpl result=(CatImpl) m.invoke(r,2);
+		int result=(int) m.invoke(r,2);
 //		test whether the value is null
-		assertEquals(2,result.getId());
+		assertEquals(2,result);
 	}
 
 	/**

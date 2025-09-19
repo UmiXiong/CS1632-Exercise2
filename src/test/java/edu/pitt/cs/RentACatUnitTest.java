@@ -89,8 +89,6 @@ public class RentACatUnitTest {
 		stdout = System.out;
 		// Second, update System.out to the PrintStream created from "out"
 		// TODO: Fill in.  Refer to the textbook chapter 14.6 on Testing System Output.
-
-
 		//		from 14.6, i should use a out to get the byte xxx stream and then new PrintStream(out)
 		out=new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
