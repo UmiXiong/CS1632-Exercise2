@@ -136,6 +136,7 @@ public class RentACatUnitTest {
 		Object result=m.invoke(r,2);
 //		test whether the value is null
 		assertNull(result);
+		verify(c2,never()).rentCat();
 		String expectedOutput = "Invalid cat ID." + newline; // 预期输出
 		String actualOutput = out.toString(); // 获取捕获的系统输出
 		assertEquals(expectedOutput, actualOutput);
