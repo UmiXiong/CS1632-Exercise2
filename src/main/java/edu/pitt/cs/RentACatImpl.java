@@ -81,6 +81,7 @@ public class RentACatImpl implements RentACat {
 				return true;
 			}
 		}
+		System.out.println("Invalid cat ID");
 		return false;
 	}
 
