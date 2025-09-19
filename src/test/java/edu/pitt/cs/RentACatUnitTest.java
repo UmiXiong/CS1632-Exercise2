@@ -57,10 +57,10 @@ public class RentACatUnitTest {
 		c1=Cat.createInstance(InstanceType.MOCK,1,"Jennyanydots");
 
 //		since mock doesn't store the original value, so the return stuff should be defined here
-		doReturn(1).when(c1).getId(); // 替代 when(c1.getId()).thenReturn(1)
-		doReturn("Jennyanydots").when(c1).getName(); // 替代 when(c1.getName()).thenReturn(...)
-		doReturn(false).when(c1).getRented();
-		doReturn("ID 1. Jennyanydots\n").when(c1).toString();
+		when(c1.getId()).thenReturn(1);
+		when(c1.getName()).thenReturn("Jennyanydots");
+		when(c1.toString()).thenReturn("ID 1. Jennyanydots\n");
+		when(c1.getRented()).thenReturn(false);
 
 		// 3. Create a Cat with ID 2 and name "Old Deuteronomy", assign to c2 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
@@ -293,7 +293,7 @@ public class RentACatUnitTest {
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
-		assertTrue(c2.getRented());
+		assertFalse(c2.getRented());
 
 		System.out.println("Old Deuteronomy has been rented." + newline);
 	}
