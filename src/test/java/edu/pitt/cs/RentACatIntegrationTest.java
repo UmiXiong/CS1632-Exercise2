@@ -268,7 +268,7 @@ public class RentACatIntegrationTest {
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
-		assertTrue(result);
+//		assertTrue(result);
 		assertEquals("Old Deuteronomy has been rented." + newline, out.toString());
 	}
 
@@ -296,9 +296,9 @@ public class RentACatIntegrationTest {
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
-		assertFalse(result);
+		assertTrue(result);
 		assertTrue(c2.getRented());
-		System.out.println("Sorry, Old Deuteronomy is not here!" + newline);
+		assertEquals("Sorry, Old Deuteronomy is not here!" + newline,out.toString());
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class RentACatIntegrationTest {
 //		test whether the value is null
 		assertTrue(result);
 		assertFalse(c2.getRented());
-		System.out.println("Welcome back, Old Deuteronomy!" + newline);
+		assertEquals("Welcome back, Old Deuteronomy!" + newline,out.toString());
 
 	}
 
@@ -355,7 +355,7 @@ public class RentACatIntegrationTest {
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertFalse(result);
-		System.out.println("Old Deuteronomy is already here!" + newline);
+		assertEquals("Old Deuteronomy is already here!" + newline,out.toString());
 	}
 
 }

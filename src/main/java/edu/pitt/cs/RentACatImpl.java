@@ -23,7 +23,7 @@ public class RentACatImpl implements RentACat {
 			if(cat.getId()==id) {
 				if(cat.getRented()){
 					cat.returnCat();
-					System.out.println("Welcome back, "+cat.getName());
+					System.out.println("Welcome back, "+cat.getName()+"!");
 					return true;
 				}
 				else{
@@ -49,13 +49,13 @@ public class RentACatImpl implements RentACat {
 		// TODO: Fill in
 		for(Cat cat:cats){
 			if(cat.getId()==id){
-				if(!cat.getRented()){
-					System.out.println(cat.getName()+ " has been rented");
+				if(cat.getRented()){
+					System.out.println("Sorry, "+ cat.getName()+ " is not here!");
 					cat.rentCat();
 					return true;
 				}
 				else{
-					System.out.println("Welcome back, "+cat.getName());
+					System.out.println(cat.getName()+" has been rented.");
 					cat.rentCat();
 					return false;
 				}
