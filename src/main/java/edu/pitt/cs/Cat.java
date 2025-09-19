@@ -15,7 +15,7 @@ public interface Cat {
 			case MOCK:
 			    // TODO: Return a mock object that emulates the behavior of the real object, if you feel you need one.
 //				mock a cat class
-				return new FakeCat(id,name);
+				return null;
 			default:
 				assert(false);
 				return null;
