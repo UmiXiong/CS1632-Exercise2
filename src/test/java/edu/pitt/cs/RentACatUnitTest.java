@@ -254,7 +254,7 @@ public class RentACatUnitTest {
 //		test whether the value is null
 		assertTrue(result);
 
-//		check the name instead of assert it, since mock will not change the name of the cat
+//		check whether the name successfully changed
 		verify(c2).renameCat("Garfield");
 	}
 
@@ -305,6 +305,7 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 //		when(c2.getRented()).thenReturn(true);
+		c2.rentCat();
 		Method m=r.getClass().getDeclaredMethod("rentCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
