@@ -255,7 +255,7 @@ public class RentACatUnitTest {
 		assertTrue(result);
 
 //		check the name instead of assert it, since mock will not change the name of the cat
-//		verify(c2).renameCat("Garfield");
+		verify(c2).renameCat("Garfield");
 	}
 
 	/**
