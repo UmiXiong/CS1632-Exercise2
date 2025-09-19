@@ -53,12 +53,12 @@ public class RentACatImpl implements RentACat {
 				if(cat.getRented()){
 					System.out.println("Sorry, "+ cat.getName()+ " is not here!");
 					cat.rentCat();
-					return true;
+					return false;
 				}
 				else{
 					System.out.println(cat.getName()+" has been rented.");
 					cat.rentCat();
-					return false;
+					return true;
 				}
 			}
 		}
