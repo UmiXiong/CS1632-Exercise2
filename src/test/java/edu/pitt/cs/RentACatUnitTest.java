@@ -289,14 +289,13 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		when(c2.getRented()).thenReturn(false);
 		Method m=r.getClass().getDeclaredMethod("rentCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
-//		assertTrue(c2.getRented());
+		assertTrue(c2.getRented());
 
 		System.out.println("Old Deuteronomy has been rented." + newline);
 	}
