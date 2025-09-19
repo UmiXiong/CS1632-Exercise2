@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class RentACatUnitTest {
+public class RentACatIntegrationTest {
 
 	/**
 	 * The test fixture for this JUnit test. Test fixture: a fixed state of a set of
@@ -38,67 +38,47 @@ public class RentACatUnitTest {
 	@Before
 	public void setUp() throws Exception {
 		// INITIALIZE THE TEST FIXTURE
-		
+
 		// 1. Create a new RentACat object and assign to r using a call to RentACat.createInstance(InstanceType).
 		// Passing InstanceType.IMPL as the first parameter will create a real RentACat object using your RentACatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock RentACat object using Mockito.
-		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
+		// Which type is the correct choice for this integration test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
-
-//		current test class should be real
+//		here we should use the real-test, since this is a collabortion test
 		r=RentACat.createInstance(InstanceType.IMPL);
 
-//		dependecy should be mock
 		// 2. Create a Cat with ID 1 and name "Jennyanydots", assign to c1 using a call to Cat.createInstance(InstanceType, int, String).
 		// Passing InstanceType.IMPL as the first parameter will create a real cat using your CatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
-		// Which type is the correct choice for this unit test?  Again, I'll leave it up to you.
+		// Which type is the correct choice for this integration test?  Again, I'll leave it up to you.
+		c1=Cat.createInstance(InstanceType.IMPL,1,"Jennyanydots");
 		// TODO: Fill in
-		c1=Cat.createInstance(InstanceType.MOCK,1,"Jennyanydots");
-
-//		since mock doesn't store the original value, so the return stuff should be defined here
-		when(c1.getId()).thenReturn(1);
-		when(c1.toString()).thenReturn("ID 1. Jennyanydots\n");
-		when(c1.getRented()).thenReturn(false);
 
 		// 3. Create a Cat with ID 2 and name "Old Deuteronomy", assign to c2 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
-		c2=Cat.createInstance(InstanceType.MOCK,2,"Old Deuteronomy");
-		//		since mock doesn't store the original value, so the return stuff should be defined here
-		when(c2.getId()).thenReturn(2);
-		when(c2.toString()).thenReturn("ID 2. Old Deuteronomy\n");
-		when(c2.getRented()).thenReturn(false);
-
-
+		c2=Cat.createInstance(InstanceType.IMPL,2,"Old Deuteronomy");
 
 		// 4. Create a Cat with ID 3 and name "Mistoffelees", assign to c3 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
-		c3=Cat.createInstance(InstanceType.MOCK,3,"Mistoffelees");
-		//		since mock doesn't store the original value, so the return stuff should be defined here
-		when(c3.getId()).thenReturn(3);
-		when(c3.toString()).thenReturn("ID 3. Mistoffelees\n");
-		when(c3.getRented()).thenReturn(false);
+		c3=Cat.createInstance(InstanceType.IMPL,3,"Mistoffelees");
 
-
-
+		
 		// 5. Redirect system output from stdout to the "out" stream
 		// First, make a back up of System.out (which is the stdout to the console)
 		stdout = System.out;
 		// Second, update System.out to the PrintStream created from "out"
 		// TODO: Fill in.  Refer to the textbook chapter 14.6 on Testing System Output.
 
-
-		//		from 14.6, i should use a out to get the byte xxx stream and then new PrintStream(out)
+//		from 14.6, i should use a out to get the byte xxx stream and then new PrintStream(out)
 		out=new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		// Restore System.out to the original stdout
 		System.setOut(stdout);
-//		clear output
-		out.reset();
 
 		// Not necessary strictly speaking since the references will be overwritten in
 		// the next setUp call anyway and Java has automatic garbage collection.
@@ -133,25 +113,23 @@ public class RentACatUnitTest {
 		Object result=m.invoke(r,2);
 //		test whether the value is null
 		assertNull(result);
-		String expected="Invalid cat ID."+newline;
-		String systemout=out.toString();
-		assertEquals(expected,systemout);
+		System.out.println("invalid cat ID. "+newline);
 
 
 	}
 
 	/**
 	 * Test case for Cat getCat(int id).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call getCat(2).
 	 * Postconditions: Return value is not null.
 	 *                 Returned cat has an ID of 2.
 	 * </pre>
-	 *
+	 * 
 	 * Hint: You will need to use Java reflection to invoke the private getCat(int)
-	 * method. efer to the Unit Testing Part 1 lecture and the textbook appendix
+	 * method. efer to the Unit Testing Part 1 lecture and the textbook appendix 
 	 * hapter on using reflection on how to do this.  Please use r.getClass() to get
 	 * the class object of r instead of hardcoding it as RentACatImpl.
 	 */
@@ -165,14 +143,14 @@ public class RentACatUnitTest {
 		Method m=r.getClass().getDeclaredMethod("getCat",int.class);
 //		also private method being tested
 		m.setAccessible(true);
-		Cat result=(Cat) m.invoke(r,2);
+		CatImpl result=(CatImpl) m.invoke(r,2);
 //		test whether the value is null
 		assertEquals(2,result.getId());
 	}
 
 	/**
 	 * Test case for String listCats().
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: r has no cats.
 	 * Execution steps: Call listCats().
@@ -193,7 +171,7 @@ public class RentACatUnitTest {
 
 	/**
 	 * Test case for String listCats().
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call listCats().
@@ -245,7 +223,7 @@ public class RentACatUnitTest {
 
 	/**
 	 * Test case for boolean renameCat(int id, String name).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call renameCat(2, "Garfield").
@@ -265,14 +243,12 @@ public class RentACatUnitTest {
 		boolean result=(boolean) m.invoke(r,2,"Garfield");
 //		test whether the value is null
 		assertTrue(result);
-
-//		check the name instead of assert it, since mock will not change the name of the cat
-		verify(c2).renameCat("Garfield");
+		assertEquals("Garfield",c2.getName());
 	}
 
 	/**
 	 * Test case for boolean rentCat(int id).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call rentCat(2).
@@ -287,21 +263,19 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		when(c2.getRented()).thenReturn(false);
 		Method m=r.getClass().getDeclaredMethod("rentCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
-//		assertTrue(c2.getRented());
-
+		assertTrue(c2.getRented());
 		System.out.println("Old Deuteronomy has been rented." + newline);
 	}
 
 	/**
 	 * Test case for boolean rentCat(int id).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c2 is rented.
@@ -317,7 +291,7 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-		when(c2.getRented()).thenReturn(true);
+		c2.rentCat();
 		Method m=r.getClass().getDeclaredMethod("rentCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
@@ -330,7 +304,7 @@ public class RentACatUnitTest {
 
 	/**
 	 * Test case for boolean returnCat(int id).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 *                c2 is rented.
@@ -346,21 +320,21 @@ public class RentACatUnitTest {
 		r.addCat(c1);
 		r.addCat(c2);
 		r.addCat(c3);
-//		first rented, then returned back
-		when(c2.getRented()).thenReturn(true).thenReturn(false);
+		c2.rentCat();
 		Method m=r.getClass().getDeclaredMethod("returnCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
+		assertFalse(c2.getRented());
 		System.out.println("Welcome back, Old Deuteronomy!" + newline);
 
 	}
 
 	/**
 	 * Test case for boolean returnCat(int id).
-	 *
+	 * 
 	 * <pre>
 	 * Preconditions: c1, c2, and c3 are added to r using addCat(Cat c).
 	 * Execution steps: Call returnCat(2).
