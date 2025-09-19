@@ -55,7 +55,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
-		c.getId();
+		int realId= c.getId();
+		assertEquals(1,realId);
 	}
 
 	/**
@@ -70,7 +71,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
-		c.getName();
+		String name=c.getName();
+		assertEquals("Jennyanydots",name);
 	}
 
 	/**
@@ -85,7 +87,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
-		c.getRented();
+		boolean state=c.getRented();
+		assertFalse(state);
 	}
 
 	/**
@@ -100,7 +103,8 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
-		c.toString();
+		String str=c.toString();
+		assertEquals("ID 1. Jennyanydots",str);
 	}
 
 	/**
@@ -117,7 +121,8 @@ public class CatUnitTest {
 	public void testRentCat() {
 		// TODO: Fill in
 		c.rentCat();
-		c.getRented();
+		boolean state=c.getRented();
+		assertTrue(state);
 	}
 
 	/**
@@ -136,6 +141,8 @@ public class CatUnitTest {
 		// TODO: Fill in
 		c.returnCat();
 		c.getRented();
+		boolean state=c.getRented();
+		assertFalse(state);
 	}
 
 	/**
@@ -152,6 +159,8 @@ public class CatUnitTest {
 	public void testRenameCat() {
 		// TODO: Fill in
 		c.renameCat("Garfield");
+		assertEquals("Garfield",c.getName());
+		assertEquals("ID 1. Garfield",c.toString());
 	}
 
 }
