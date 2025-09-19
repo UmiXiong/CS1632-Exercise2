@@ -15,12 +15,12 @@ public class CatImpl implements Cat {
 
 	public void rentCat() {
 		// TODO: Fill in
-		rented=true;
+		this.rented=true;
 	}
 
 	public void returnCat() {
 		// TODO: Fill in
-		rented=false;
+		this.rented=false;
 	}
 
 	public void renameCat(String name) {

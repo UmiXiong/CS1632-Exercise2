@@ -268,7 +268,7 @@ public class RentACatIntegrationTest {
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
-//		assertTrue(result);
+		assertFalse(result);
 		assertEquals("Old Deuteronomy has been rented." + newline, out.toString());
 	}
 

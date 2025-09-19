@@ -28,6 +28,7 @@ public class RentACatImpl implements RentACat {
 				}
 				else{
 					System.out.println(cat.getName()+" is already here!");
+					cat.returnCat();
 					return false;
 				}
 			}
@@ -51,7 +52,7 @@ public class RentACatImpl implements RentACat {
 			if(cat.getId()==id){
 				if(cat.getRented()){
 					System.out.println("Sorry, "+ cat.getName()+ " is not here!");
-//					cat.rentCat();
+					cat.rentCat();
 					return true;
 				}
 				else{
