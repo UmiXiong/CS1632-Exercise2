@@ -20,9 +20,16 @@ public class RentACatImpl implements RentACat {
 	public boolean returnCat(int id) {
 		// TODO: Fill in
 		for(Cat cat:cats){
-			if(cat.getId()==id && cat.getRented()){
-				cat.returnCat();
-				return true;
+			if(cat.getId()==id) {
+				if(cat.getRented()){
+					cat.returnCat();
+					System.out.println("Welcome back, "+cat.getName());
+					return true;
+				}
+				else{
+					System.out.println(cat.getName()+" is already here!");
+					return false;
+				}
 			}
 		}
 		return false;
