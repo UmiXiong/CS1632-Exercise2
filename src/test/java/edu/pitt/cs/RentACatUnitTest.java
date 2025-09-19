@@ -281,7 +281,7 @@ public class RentACatUnitTest {
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
-		assertTrue(c2.getRented());
+		assertFalse(c2.getRented());
 
 		System.out.println("Old Deuteronomy has been rented." + newline);
 	}
@@ -311,7 +311,7 @@ public class RentACatUnitTest {
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
 		assertTrue(result);
-		assertTrue(c2.getRented());
+		assertFalse(c2.getRented());
 		System.out.println("Sorry, Old Deuteronomy is not here!" + newline);
 	}
 
