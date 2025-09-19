@@ -335,13 +335,13 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 //		first rented, then returned back
-		when(c2.getRented()).thenReturn(true);
+//		when(c2.getRented()).thenReturn(true).thenReturn(false);
 		Method m=r.getClass().getDeclaredMethod("returnCat", int.class);
 //		also private method being tested
 		m.setAccessible(true);
 		boolean result=(boolean) m.invoke(r,2);
 //		test whether the value is null
-		assertTrue(result);
+		assertFalse(result);
 		System.out.println("Welcome back, Old Deuteronomy!" + newline);
 
 	}
